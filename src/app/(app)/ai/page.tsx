@@ -4,7 +4,7 @@ import { AIChatInterface } from "@/components/common/AIChatInterface";
 export default function AIPage() {
   return (
     <div className="flex flex-col h-screen">
-      <Header title="AI Research Assistant" subtitle="Your AI-powered study partner" />
+      <Header title="Student GPT" subtitle="Your AI-powered study partner" />
       <AIChatInterface />
     </div>
   );

@@ -38,7 +38,7 @@ export function AIChatInterface() {
   }, [messages]);
   
   useEffect(() => {
-    setMessages([{ role: 'bot', content: 'Hello! How can I help you with your research today? Choose an option below or ask me a question.' }]);
+    setMessages([{ role: 'bot', content: 'Hello! I am Student GPT. How can I help you with your research today? Choose an option below or ask me a question.' }]);
   }, []);
 
   const handleActionSelect = (action: AiAction) => {
@@ -88,7 +88,7 @@ export function AIChatInterface() {
       toast({
         variant: "destructive",
         title: "An error occurred",
-        description: "The AI assistant could not be reached. Please try again.",
+        description: "Student GPT could not be reached. Please try again.",
       });
       setMessages((prev) => prev.slice(0, -1)); // Remove user message on error
     } finally {

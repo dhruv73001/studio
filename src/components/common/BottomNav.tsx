@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ClipboardList, Bot, Calendar, User } from 'lucide-react';
+import { Home, ClipboardList, Bot, Calendar, User, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function BottomNav() {
@@ -14,7 +14,7 @@ export function BottomNav() {
   const navItems = [
     { href: homePath, icon: Home, label: 'Home' },
     { href: '/tasks', icon: ClipboardList, label: 'Tasks' },
-    { href: '/ai', icon: Bot, label: 'AI' },
+    { href: '/ai', icon: GraduationCap, label: 'GPT' },
     { href: '/calendar', icon: Calendar, label: 'Calendar' },
     { href: '/profile', icon: User, label: 'Profile' },
   ];

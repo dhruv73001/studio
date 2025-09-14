@@ -1,7 +1,7 @@
 'use server';
 
 /**
- * @fileOverview This flow allows users to ask the AI Research Assistant questions on a variety of topics.
+ * @fileOverview This flow allows users to ask Student GPT questions on a variety of topics.
  *
  * - answerResearchQuestion - A function that handles the answering of research questions.
  * - AnswerResearchQuestionInput - The input type for the answerResearchQuestion function.
@@ -29,7 +29,7 @@ const prompt = ai.definePrompt({
   name: 'answerResearchQuestionPrompt',
   input: {schema: AnswerResearchQuestionInputSchema},
   output: {schema: AnswerResearchQuestionOutputSchema},
-  prompt: `You are an AI Research Assistant that is able to answer questions on a variety of topics.  Answer the following question to the best of your ability.\n\nQuestion: {{{question}}}`,
+  prompt: `You are Student GPT, an AI assistant that is able to answer questions on a variety of topics. Answer the following question to the best of your ability.\n\nQuestion: {{{question}}}`,
 });
 
 const answerResearchQuestionFlow = ai.defineFlow(
