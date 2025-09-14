@@ -7,8 +7,10 @@ import { cn } from '@/lib/utils';
 
 export function BottomNav() {
   const pathname = usePathname();
-  const role = pathname.split('/')[1] || 'student';
   
+  // Statically set the role for the home path.
+  // This could be replaced with actual role management later.
+  const role = 'student'; 
   const homePath = `/${role}`;
 
   const navItems = [
@@ -23,26 +25,7 @@ export function BottomNav() {
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur-sm max-w-md mx-auto">
       <div className="flex h-16 items-center justify-around">
         {navItems.map((item) => {
-          // A more robust active check
-          const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href) && item.label !== 'Home');
-          
-          // Special case for home to avoid matching all routes
-          if (item.label === 'Home' && pathname !== homePath) {
-            const isActiveHome = false;
-             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  'flex flex-col items-center justify-center space-y-1 w-16 text-muted-foreground transition-colors hover:text-primary',
-                  isActiveHome && 'text-primary'
-                )}
-              >
-                <item.icon className="h-6 w-6" />
-                <span className="text-xs font-medium">{item.label}</span>
-              </Link>
-            );
-          }
+          const isActive = pathname === item.href;
           
           return (
             <Link
