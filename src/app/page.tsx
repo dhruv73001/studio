@@ -9,7 +9,7 @@ export default function LoginPage() {
         <div className="rounded-full bg-primary/10 p-4">
           <BookOpenCheck className="h-16 w-16 text-primary" />
         </div>
-        <h1 className="text-4xl font-bold font-headline text-primary">PathHunters</h1>
+        <h1 className="text-4xl font-bold font-headline text-primary">ClassVerse</h1>
         <p className="text-muted-foreground">Your smart educational partner.</p>
       </div>
       <div className="mt-12 flex w-full max-w-xs flex-col space-y-4">

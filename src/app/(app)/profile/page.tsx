@@ -18,7 +18,7 @@ export default function ProfilePage() {
             </Avatar>
             <div>
               <p className="text-xl font-bold">User Name</p>
-              <p className="text-sm text-muted-foreground">user.role@pathhunters.edu</p>
+              <p className="text-sm text-muted-foreground">user.role@classverse.edu</p>
             </div>
           </CardContent>
         </Card>
