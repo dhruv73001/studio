@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import Link from "next/link";
 
 export default function StudentDashboard() {
   return (
@@ -25,7 +26,10 @@ export default function StudentDashboard() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-base font-medium flex items-center justify-between">
-              Today's Timetable <BookOpen className="h-4 w-4 text-muted-foreground" />
+              Today's Timetable
+              <Link href="/calendar" aria-label="Open full calendar">
+                <BookOpen className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+              </Link>
             </CardTitle>
           </CardHeader>
           <CardContent>
