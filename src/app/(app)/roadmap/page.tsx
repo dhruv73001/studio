@@ -33,31 +33,26 @@ export default function RoadmapPage() {
       <div className="p-4">
         <Card>
           <CardContent className="pt-6">
-            <div className="relative">
+            <div className="relative pl-6">
               {/* Vertical connecting line */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-0.5 bg-border"></div>
+              <div className="absolute left-0 top-0 h-full w-0.5 bg-border -translate-x-1/2 ml-3"></div>
 
               {curriculumRoadmap.map((item, index) => {
                 const config = statusConfig[item.status];
                 const Icon = config.icon;
-                const isEven = index % 2 === 0;
 
                 return (
-                  <div key={item.orderIndex} className="relative flex justify-center mb-12">
-                     <div className={cn("absolute top-1/2 w-1/2 border-t", config.borderColor)}></div>
-                    <div className={cn(
-                      "w-1/2",
-                      isEven ? "text-right pr-8" : "text-left pl-8 order-2"
-                    )}>
-                      <p className={cn("font-bold text-lg", config.textColor)}>{item.title}</p>
-                      <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-                    </div>
-
-                    <div className={cn("absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10", isEven ? "-right-1/2" : "-left-1/2")}>
-                       <div className="w-10 h-10 rounded-full bg-background border-2 flex items-center justify-center" style={{ borderColor: config.borderColor.split('border-')[1] }}>
-                         <Icon className={cn("w-6 h-6", config.textColor)} />
-                       </div>
-                    </div>
+                  <div key={item.orderIndex} className="relative mb-8 pl-8">
+                     <div className={cn(
+                        "absolute -left-0.5 top-1 h-6 w-6 rounded-full bg-background border-2 flex items-center justify-center -translate-x-1/2",
+                        config.borderColor
+                     )}>
+                        <Icon className={cn("w-4 h-4", config.textColor)} />
+                     </div>
+                     <div className="p-4 rounded-lg bg-secondary/50 border border-border">
+                        <p className={cn("font-bold text-base", config.textColor)}>{item.title}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                     </div>
                   </div>
                 );
               })}
