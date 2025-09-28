@@ -84,22 +84,68 @@ export const curriculumRoadmap = [
     { title: 'Unit 5: Statistics', description: 'The practice of collecting and analyzing numerical data.', status: 'not-started', orderIndex: 5 },
 ];
 
-export const calendarData = {
-  month: 'October',
-  year: 2023,
-  events: [
-    { day: 10, title: 'Math Test', type: 'assessment' },
-    { day: 15, title: 'Science Fair', type: 'event' },
-    { day: 20, title: 'History Project Due', type: 'task' },
-    { day: 28, title: 'Parent-Teacher Meeting', type: 'event' },
-  ],
-  dailySchedule: [
-    { time: '09:00 AM', subject: 'Mathematics' },
-    { time: '10:00 AM', subject: 'Physics' },
-    { time: '12:00 PM', subject: 'History' },
-    { time: '01:00 PM', subject: 'Computer Science' },
-  ]
+export type CalendarEvent = {
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  time: string;
+  type: 'Quiz' | 'Assignment' | 'Event' | 'Holiday' | 'Class';
 };
+
+export const calendarData: { events: CalendarEvent[] } = {
+  events: [
+    {
+      title: 'Math Quiz',
+      description: 'Chapter 5 Quiz',
+      startDate: '2025-10-30',
+      endDate: '2025-10-30',
+      time: '10:00 AM',
+      type: 'Quiz',
+    },
+    {
+      title: 'Science Assignment Submission',
+      description: 'Submit lab report',
+      startDate: '2025-11-02',
+      endDate: '2025-11-02',
+      time: '11:59 PM',
+      type: 'Assignment',
+    },
+    {
+      title: 'Parent-Teacher Meeting',
+      description: 'Discuss student progress',
+      startDate: '2025-11-05',
+      endDate: '2025-11-05',
+      time: '4:00 PM',
+      type: 'Event',
+    },
+    {
+      title: 'School Holiday – Diwali',
+      description: 'Holiday',
+      startDate: '2025-11-12',
+      endDate: '2025-11-12',
+      time: 'All Day',
+      type: 'Holiday',
+    },
+     {
+      title: 'Physics Class',
+      description: 'Lecture on Thermodynamics',
+      startDate: new Date().toISOString().split('T')[0], // Today
+      endDate: new Date().toISOString().split('T')[0],
+      time: '11:00 AM',
+      type: 'Class',
+    },
+     {
+      title: 'History Class',
+      description: 'Discussion on World War II',
+      startDate: new Date().toISOString().split('T')[0], // Today
+      endDate: new Date().toISOString().split('T')[0],
+      time: '01:00 PM',
+      type: 'Class',
+    },
+  ],
+};
+
 
 export const leaderboardData = [
     { rank: 1, name: 'Alice Smith', points: 1250, avatar: 'https://picsum.photos/seed/alice/40', badges: ['Top Scorer', 'Perfect Attendance'] },
