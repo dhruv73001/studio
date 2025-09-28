@@ -17,29 +17,32 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 export default function StudentDashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-muted/40">
-      <Header title="Student Dashboard" subtitle={`Welcome, ${studentData.name}!`} />
+      <Header title="Dashboard" subtitle={`Welcome back, ${studentData.name}!`} />
       <div className="flex-1 space-y-4 p-4">
         
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base font-medium flex items-center justify-between">
-              Today's Timetable
-              <Link href="/calendar" aria-label="Open full calendar">
-                <BookOpen className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
-              </Link>
-            </CardTitle>
+        <Card className="bg-primary text-primary-foreground shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-lg">Today's Timetable</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {studentData.timetable.map((item, index) => (
-                <div key={index} className="flex items-center text-sm">
-                  <span className="w-20 font-semibold text-primary">{item.time}</span>
-                  <span className="flex-1">{item.subject}</span>
-                  {item.teacher && <span className="text-xs text-muted-foreground">{item.teacher}</span>}
+                <div key={index} className="flex items-center justify-between text-sm bg-primary-foreground/10 p-3 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <span className="font-bold">{item.time}</span>
+                    <div>
+                        <p>{item.subject}</p>
+                        {item.teacher && <p className="text-xs opacity-80">{item.teacher}</p>}
+                    </div>
+                  </div>
+                   <Link href="/calendar" aria-label="Open full calendar">
+                    <BookOpen className="h-5 w-5 hover:scale-110 transition-transform" />
+                  </Link>
                 </div>
               ))}
             </div>
@@ -47,25 +50,25 @@ export default function StudentDashboard() {
         </Card>
 
         <div className="grid grid-cols-2 gap-4">
-            <Card className="bg-green-50 border-green-200">
+            <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">Attendance</CardTitle>
-                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                    <CheckCircle2 className="h-4 w-4 text-accent" />
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold text-green-700">{studentData.attendance}%</div>
-                    <p className="text-xs text-green-500">Great standing!</p>
+                    <div className="text-2xl font-bold text-accent">{studentData.attendance}%</div>
+                    <p className="text-xs text-muted-foreground">Great standing!</p>
                 </CardContent>
             </Card>
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Leaderboard Rank</CardTitle>
+                    <CardTitle className="text-sm font-medium">Rank</CardTitle>
                     <Star className="h-4 w-4 text-yellow-500" />
                 </CardHeader>
                 <CardContent>
                     <div className="text-2xl font-bold">#{studentData.leaderboardRank}</div>
-                    <Link href="/leaderboard" className="text-xs text-primary hover:underline flex items-center">
-                        View Full Board <ArrowRight className="ml-1 h-3 w-3" />
+                     <Link href="/leaderboard" className="text-xs text-primary hover:underline flex items-center">
+                        View Board <ArrowRight className="ml-1 h-3 w-3" />
                     </Link>
                 </CardContent>
             </Card>
@@ -77,32 +80,23 @@ export default function StudentDashboard() {
               Assigned Tasks <ListTodo className="h-4 w-4 text-muted-foreground" />
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-3">
               {studentData.tasks.solo.map((task, i) => (
-                  <div key={i} className="flex items-center justify-between p-2 rounded-md bg-secondary">
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-secondary">
                       <div>
                           <p className="font-semibold text-sm">{task.title}</p>
-                          <p className="text-xs text-muted-foreground">Solo Task: {task.status}</p>
+                          <Badge variant="outline" className="mt-1">{task.status}</Badge>
                       </div>
-                      <Button variant="outline" size="sm">View</Button>
-                  </div>
-              ))}
-              {studentData.tasks.group.map((task, i) => (
-                  <div key={i} className="flex items-center justify-between p-2 rounded-md bg-secondary">
-                      <div>
-                          <p className="font-semibold text-sm">{task.title}</p>
-                          <p className="text-xs text-muted-foreground">Group Task: {task.status}</p>
-                      </div>
-                      <Button variant="outline" size="sm">View</Button>
+                      <Button variant="ghost" size="sm">View</Button>
                   </div>
               ))}
               {studentData.tasks.assessment.map((task, i) => (
-                  <div key={i} className="flex items-center justify-between p-2 rounded-md bg-blue-50 border border-blue-200">
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-primary/10 border border-primary/20">
                       <div>
-                          <p className="font-semibold text-sm text-blue-800">{task.title}</p>
-                          <p className="text-xs text-blue-600">Assessment: {task.status}</p>
+                          <p className="font-semibold text-sm text-primary">{task.title}</p>
+                           <Badge className="mt-1">Assessment</Badge>
                       </div>
-                      <Button size="sm">Take Assessment</Button>
+                      <Button size="sm">Start</Button>
                   </div>
               ))}
           </CardContent>
