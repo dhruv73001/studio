@@ -1,9 +1,12 @@
+
+'use client'
+
 import { Header } from "@/components/common/Header";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { teacherData, curriculumRoadmap } from "@/lib/data";
-import { BarChart2, BookCopy, CalendarClock, Bell, Camera, UserCheck, PlusCircle, Send, Users, ShieldCheck, Check, X, Milestone, ArrowRight } from "lucide-react";
+import { BarChart2, CalendarClock, Camera, UserCheck, PlusCircle, Send, Check, X, ArrowRight, BarChart, AlertTriangle, Lightbulb } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -13,11 +16,10 @@ import {
   DialogFooter,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Bar, XAxis, YAxis, ResponsiveContainer, BarChart as RechartsBarChart } from "recharts";
+import { ChartContainer } from "@/components/ui/chart";
 
 export default function TeacherDashboard() {
   const statusColors = {
@@ -25,6 +27,11 @@ export default function TeacherDashboard() {
     "in-progress": "bg-blue-500/20 text-blue-700",
     upcoming: "bg-secondary text-secondary-foreground",
   };
+  
+  const chartConfig = {
+    value: { label: "Value", color: "hsl(var(--primary))" },
+    goal: { label: "Goal", color: "hsl(var(--secondary))" },
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-muted/40">
@@ -51,6 +58,52 @@ export default function TeacherDashboard() {
                 </CardContent>
             </Card>
         </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base font-medium flex items-center justify-between">
+              Student Insights: {teacherData.smartInsights.studentName}
+              <Lightbulb className="h-5 w-5 text-yellow-500" />
+            </CardTitle>
+            <CardDescription>{teacherData.smartInsights.week}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {teacherData.smartInsights.riskAlert && (
+              <div className="flex items-center gap-2 text-sm text-destructive border border-destructive/20 bg-destructive/5 p-2 rounded-md mb-4">
+                <AlertTriangle className="h-4 w-4" />
+                <p>Early warning for potential performance dip.</p>
+              </div>
+            )}
+            <p className="text-sm text-muted-foreground mb-4 italic">
+              "{teacherData.smartInsights.aiSummary}"
+            </p>
+            <div className="h-[120px]">
+              <ChartContainer config={chartConfig} className="w-full h-full">
+                <RechartsBarChart
+                    accessibilityLayer
+                    data={teacherData.smartInsights.data}
+                    layout="vertical"
+                    margin={{ left: 10, right: 10 }}
+                >
+                    <XAxis type="number" dataKey="value" hide />
+                    <YAxis
+                      type="category"
+                      dataKey="metric"
+                      tickLine={false}
+                      axisLine={false}
+                      tickMargin={8}
+                      width={80}
+                      className="text-xs"
+                    />
+                    <RechartsBarChart.background>
+                      <rect className="fill-secondary" rx={4} ry={4} />
+                    </RechartsBarChart.background>
+                    <Bar dataKey="value" className="fill-primary" radius={4} />
+                </RechartsBarChart>
+              </ChartContainer>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card>
             <CardHeader>

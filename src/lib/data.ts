@@ -14,6 +14,17 @@ export const teacherData = {
     { student: 'Frank Castle', reason: 'Family event', status: 'pending' },
     { student: 'Grace Hopper', reason: 'Medical', status: 'pending' },
   ],
+  smartInsights: {
+    studentName: "Alex Johnson",
+    week: "October 16-22",
+    aiSummary: "Alex has excellent attendance but missed one key assignment. Focusing on task submission will be beneficial.",
+    riskAlert: true,
+    data: [
+      { metric: 'Attendance', value: 92, goal: 95 },
+      { metric: 'Tasks', value: 66, goal: 100 },
+      { metric: 'Quiz Avg', value: 85, goal: 80 },
+    ],
+  }
 };
 
 export const studentData = {
@@ -50,7 +61,17 @@ export const parentData = {
   leaveRequests: [
       { date: 'Oct 20', reason: 'Dentist Appointment', status: 'approved' },
       { date: 'Nov 02', reason: 'Family Vacation', status: 'pending' },
-  ]
+  ],
+  smartInsights: {
+    week: "October 16-22",
+    aiSummary: "Alex has excellent attendance but missed one key assignment. Focusing on task submission will be beneficial.",
+    riskAlert: true,
+    data: [
+      { metric: 'Attendance', value: 92, goal: 95 },
+      { metric: 'Tasks', value: 66, goal: 100 },
+      { metric: 'Quiz Avg', value: 85, goal: 80 },
+    ],
+  }
 };
 
 export const curriculumRoadmap = [
@@ -60,3 +81,20 @@ export const curriculumRoadmap = [
     { title: 'Unit 4: Calculus', description: 'Introduction to limits, derivatives, and integrals.', status: 'not-started', orderIndex: 4 },
     { title: 'Unit 5: Statistics', description: 'The practice of collecting and analyzing numerical data.', status: 'not-started', orderIndex: 5 },
 ];
+
+export const calendarData = {
+  month: 'October',
+  year: 2023,
+  events: [
+    { day: 10, title: 'Math Test', type: 'assessment' },
+    { day: 15, title: 'Science Fair', type: 'event' },
+    { day: 20, title: 'History Project Due', type: 'task' },
+    { day: 28, title: 'Parent-Teacher Meeting', type: 'event' },
+  ],
+  dailySchedule: [
+    { time: '09:00 AM', subject: 'Mathematics' },
+    { time: '10:00 AM', subject: 'Physics' },
+    { time: '12:00 PM', subject: 'History' },
+    { time: '01:00 PM', subject: 'Computer Science' },
+  ]
+};

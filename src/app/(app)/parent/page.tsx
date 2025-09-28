@@ -1,9 +1,12 @@
+
+'use client'
+
 import { Header } from "@/components/common/Header";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { parentData, curriculumRoadmap } from "@/lib/data";
-import { User, CheckCircle, List, Send, Calendar, BarChartHorizontal, Milestone, ArrowRight } from "lucide-react";
+import { User, CheckCircle, List, Send, Milestone, ArrowRight, BarChart, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Table,
@@ -14,19 +17,20 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import Link from "next/link";
+import { Bar, XAxis, YAxis, ResponsiveContainer, BarChart as RechartsBarChart } from "recharts";
+import { ChartContainer } from "@/components/ui/chart";
 
 export default function ParentDashboard() {
-  const statusColors = {
-    completed: "bg-accent text-accent-foreground",
-    "in-progress": "bg-blue-500/20 text-blue-700",
-    upcoming: "bg-secondary text-secondary-foreground",
-  };
-  
   const leaveStatusColors: { [key: string]: string } = {
     approved: "bg-green-100 text-green-800",
     pending: "bg-yellow-100 text-yellow-800",
     declined: "bg-red-100 text-red-800",
   };
+  
+  const chartConfig = {
+    value: { label: "Value", color: "hsl(var(--primary))" },
+    goal: { label: "Goal", color: "hsl(var(--secondary))" },
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-muted/40">
@@ -41,6 +45,52 @@ export default function ParentDashboard() {
                 </div>
                 <User className="w-8 h-8 text-primary" />
             </CardHeader>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base font-medium flex items-center justify-between">
+              Weekly Insights
+              <BarChart className="h-5 w-5 text-muted-foreground" />
+            </CardTitle>
+            <CardDescription>{parentData.smartInsights.week}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {parentData.smartInsights.riskAlert && (
+              <div className="flex items-center gap-2 text-sm text-destructive border border-destructive/20 bg-destructive/5 p-2 rounded-md mb-4">
+                <AlertTriangle className="h-4 w-4" />
+                <p>An early warning has been detected.</p>
+              </div>
+            )}
+            <p className="text-sm text-muted-foreground mb-4 italic">
+              "{parentData.smartInsights.aiSummary}"
+            </p>
+            <div className="h-[120px]">
+              <ChartContainer config={chartConfig} className="w-full h-full">
+                <RechartsBarChart
+                    accessibilityLayer
+                    data={parentData.smartInsights.data}
+                    layout="vertical"
+                    margin={{ left: 10, right: 10 }}
+                >
+                    <XAxis type="number" dataKey="value" hide />
+                    <YAxis
+                      type="category"
+                      dataKey="metric"
+                      tickLine={false}
+                      axisLine={false}
+                      tickMargin={8}
+                      width={80}
+                      className="text-xs"
+                    />
+                    <RechartsBarChart.background>
+                      <rect className="fill-secondary" rx={4} ry={4} />
+                    </RechartsBarChart.background>
+                    <Bar dataKey="value" className="fill-primary" radius={4} />
+                </RechartsBarChart>
+              </ChartContainer>
+            </div>
+          </CardContent>
         </Card>
 
         <Card>
