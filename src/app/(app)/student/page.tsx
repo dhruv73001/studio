@@ -3,7 +3,7 @@ import { Header } from "@/components/common/Header";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { studentData } from "@/lib/data";
-import { CheckCircle2, XCircle, ListTodo, Users, BarChart2, Calendar, Star, LogOut, ArrowRight, BookOpen, PlusCircle } from "lucide-react";
+import { CheckCircle2, XCircle, ListTodo, Users, BarChart2, Calendar, Star, LogOut, ArrowRight, BookOpen, PlusCircle, Milestone } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -73,6 +73,23 @@ export default function StudentDashboard() {
                 </CardContent>
             </Card>
         </div>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-base font-medium">Learning Roadmap</CardTitle>
+            <Milestone className="h-5 w-5 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">
+              Follow your personalized learning path and track your progress.
+            </p>
+            <Button asChild className="w-full">
+              <Link href="/roadmap">
+                View Your Path <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
