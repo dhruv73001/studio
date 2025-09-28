@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect, type FormEvent } from 'react';
@@ -11,7 +12,8 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { answerResearchQuestion } from '@/ai/flows/answer-research-questions';
 import { summarizeResearchContent } from '@/ai/flows/summarize-research-content';
-import { generateMCQQuestions } from '@/ai/flows/generate-mcq-questions';
+import { generateMCQQuestions, type GenerateMCQQuestionsOutput } from '@/ai/flows/generate-mcq-questions';
+import { InteractiveQuiz } from './InteractiveQuiz';
 
 type Message = {
   role: 'user' | 'bot';
@@ -67,18 +69,8 @@ export function AIChatInterface() {
         response = await generateMCQQuestions({ topic: input, numQuestions: 5 });
         const mcqContent = (
           <div className="space-y-4">
-            <p>Here are 5 multiple-choice questions on "{input}":</p>
-            {response.questions.map((q, index) => (
-              <div key={index} className="text-sm p-2 border rounded-md">
-                <p className="font-semibold">{index + 1}. {q.question}</p>
-                <ul className="list-disc pl-5 mt-1 space-y-1">
-                  {q.options.map((opt, i) => (
-                    <li key={i}>{opt}</li>
-                  ))}
-                </ul>
-                <p className="mt-2 text-primary font-bold">Answer: {q.answer}</p>
-              </div>
-            ))}
+            <p className="font-semibold">Here is your quiz on "{input}":</p>
+            <InteractiveQuiz quizData={response} />
           </div>
         );
         setMessages((prev) => [...prev, { role: 'bot', content: mcqContent }]);
@@ -101,7 +93,7 @@ export function AIChatInterface() {
       case 'summary':
         return { placeholder: 'Paste the content you want to summarize...', Component: Textarea };
       case 'mcq':
-        return { placeholder: 'Enter a topic to generate MCQs (e.g., Photosynthesis)', Component: Input };
+        return { placeholder: 'Enter a topic to generate a quiz (e.g., Photosynthesis)', Component: Input };
       case 'question':
       default:
         return { placeholder: 'Ask a research question...', Component: Input };
@@ -117,7 +109,7 @@ export function AIChatInterface() {
           {messages.map((msg, index) => (
             <div key={index} className={cn('flex items-start gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}>
               {msg.role === 'bot' && <div className="p-2 rounded-full bg-primary text-primary-foreground"><Bot className="w-5 h-5" /></div>}
-              <Card className={cn('max-w-sm', msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card')}>
+              <Card className={cn('max-w-sm w-full', msg.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card')}>
                 <CardContent className="p-3 text-sm">{msg.content}</CardContent>
               </Card>
               {msg.role === 'user' && <div className="p-2 rounded-full bg-secondary"><User className="w-5 h-5" /></div>}
@@ -140,7 +132,7 @@ export function AIChatInterface() {
         <div className="flex gap-2 mb-2">
             <Button variant={currentAction === 'question' ? 'default' : 'outline'} size="sm" onClick={() => handleActionSelect('question')}><Sparkles className="mr-2 h-4 w-4" />Ask</Button>
             <Button variant={currentAction === 'summary' ? 'default' : 'outline'} size="sm" onClick={() => handleActionSelect('summary')}><FileText className="mr-2 h-4 w-4" />Summarize</Button>
-            <Button variant={currentAction === 'mcq' ? 'default' : 'outline'} size="sm" onClick={() => handleActionSelect('mcq')}><ListChecks className="mr-2 h-4 w-4" />MCQs</Button>
+            <Button variant={currentAction === 'mcq' ? 'default' : 'outline'} size="sm" onClick={() => handleActionSelect('mcq')}><ListChecks className="mr-2 h-4 w-4" />Quiz</Button>
         </div>
         <form onSubmit={handleSubmit} className="flex gap-2">
           <Component
