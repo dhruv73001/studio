@@ -3,21 +3,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ClipboardList, BookOpen, User, GraduationCap, Users } from 'lucide-react';
+import { Home, BookOpen, Users, GraduationCap, User, Wand2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
 export function BottomNav() {
   const pathname = usePathname();
   
-  // This is a placeholder. In a real app, you'd get the user's role dynamically.
-  const role = 'student'; 
-  const homePath = `/${role}`;
-
   const navItems = [
     { href: '/student', icon: Home, label: 'Home' },
     { href: '/roadmaps', icon: BookOpen, label: 'Roadmaps' },
-    { href: '/group-study', icon: Users, label: 'Study' },
+    { href: '/ai-roadmap', icon: Wand2, label: 'AI Plan' },
     { href: '/ai', icon: GraduationCap, label: 'GPT' },
     { href: '/profile', icon: User, label: 'Profile' },
   ];
@@ -27,7 +23,7 @@ export function BottomNav() {
       <nav className="max-w-md w-11/12 mx-auto">
         <div className="flex h-16 items-center justify-around bg-background/80 backdrop-blur-sm rounded-full border shadow-lg">
           {navItems.map((item) => {
-            const isActive = pathname.startsWith(item.href);
+            const isActive = pathname === item.href;
             
             return (
               <Link

@@ -4,11 +4,10 @@
 import { useEffect, useState } from "react";
 import { Header } from "@/components/common/Header";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Circle, Milestone } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RoadmapTimeline } from "@/components/common/RoadmapTimeline";
 
 type RoadmapStep = {
   title: string;
@@ -40,7 +39,6 @@ export default function RoadmapDetailPage({ params }: { params: { id: string } }
 
         if (docSnap.exists()) {
           const data = docSnap.data() as Roadmap;
-          // Ensure steps are sorted by orderIndex if they exist
           if (data.steps && Array.isArray(data.steps)) {
             data.steps.sort((a, b) => a.orderIndex - b.orderIndex);
           }
@@ -59,27 +57,6 @@ export default function RoadmapDetailPage({ params }: { params: { id: string } }
     fetchRoadmap();
   }, [params.id]);
 
-  const statusConfig = {
-    completed: {
-      icon: CheckCircle,
-      textColor: "text-accent",
-      bgColor: "bg-accent",
-      borderColor: "border-accent",
-    },
-    "in-progress": {
-      icon: Milestone,
-      textColor: "text-primary",
-      bgColor: "bg-primary",
-      borderColor: "border-primary",
-    },
-    "not-started": {
-      icon: Circle,
-      textColor: "text-muted-foreground",
-      bgColor: "bg-border",
-      borderColor: "border-border",
-    },
-  };
-  
   const renderLoading = () => (
     <div className="relative pl-6">
        <div className="absolute left-0 top-0 h-full w-0.5 bg-border -translate-x-1/2 ml-3"></div>
@@ -108,38 +85,7 @@ export default function RoadmapDetailPage({ params }: { params: { id: string } }
       );
     }
 
-    if (!roadmap || !roadmap.steps || roadmap.steps.length === 0) {
-      return (
-        <div className="text-center text-muted-foreground py-8">
-          <p>No steps found for this roadmap.</p>
-        </div>
-      );
-    }
-
-    return (
-      <div className="relative pl-6">
-        <div className="absolute left-0 top-0 h-full w-0.5 bg-border -translate-x-1/2 ml-3"></div>
-        {roadmap.steps.map((item, index) => {
-          const config = statusConfig[item.status] || statusConfig['not-started'];
-          const Icon = config.icon;
-
-          return (
-            <div key={item.orderIndex} className="relative mb-8 pl-8">
-              <div className={cn(
-                  "absolute -left-0.5 top-1 h-6 w-6 rounded-full bg-background border-2 flex items-center justify-center -translate-x-1/2",
-                  config.borderColor
-              )}>
-                  <Icon className={cn("w-4 h-4", config.textColor)} />
-              </div>
-              <div className="p-4 rounded-lg bg-secondary/50 border border-border">
-                  <p className={cn("font-bold text-base", config.textColor)}>{item.title}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
+    return <RoadmapTimeline steps={roadmap?.steps || []} />;
   };
 
   return (
