@@ -1,8 +1,9 @@
+
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ClipboardList, Calendar, User, GraduationCap } from 'lucide-react';
+import { Home, ClipboardList, Calendar, User, GraduationCap, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
@@ -15,8 +16,8 @@ export function BottomNav() {
   const navItems = [
     { href: homePath, icon: Home, label: 'Home' },
     { href: '/tasks', icon: ClipboardList, label: 'Tasks' },
+    { href: '/group-study', icon: Users, label: 'Study' },
     { href: '/ai', icon: GraduationCap, label: 'GPT' },
-    { href: '/calendar', icon: Calendar, label: 'Calendar' },
     { href: '/profile', icon: User, label: 'Profile' },
   ];
 

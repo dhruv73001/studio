@@ -1,4 +1,5 @@
 
+
 export const teacherData = {
   name: "Dr. Evelyn Reed",
   attendance: 85,
@@ -108,4 +109,28 @@ export const leaderboardData = [
     { rank: 5, name: 'Diana Prince', points: 980, avatar: 'https://picsum.photos/seed/diana/40', badges: ['Top Scorer'] },
     { rank: 6, name: 'Ethan Hunt', points: 950, avatar: 'https://picsum.photos/seed/ethan/40', badges: [] },
     { rank: 7, name: 'Frank Castle', points: 920, avatar: 'https://picsum.photos/seed/frank/40', badges: ['Perfect Attendance'] },
+];
+
+export const groupStudyData = [
+  {
+    id: 'room1',
+    title: 'Calculus Crash Course',
+    subject: 'Mathematics',
+    host: 'Alice Smith',
+    participants: [
+      { name: 'Alice Smith', avatar: 'https://picsum.photos/seed/alice/40' },
+      { name: 'Bob Johnson', avatar: 'https://picsum.photos/seed/bob/40' },
+      { name: 'Charlie Brown', avatar: 'https://picsum.photos/seed/charlie/40' },
+    ],
+  },
+  {
+    id: 'room2',
+    title: 'Shakespeare Study Sesh',
+    subject: 'Literature',
+    host: 'Diana Prince',
+    participants: [
+      { name: 'Diana Prince', avatar: 'https://picsum.photos/seed/diana/40' },
+      { name: 'Ethan Hunt', avatar: 'https://picsum.photos/seed/ethan/40' },
+    ],
+  },
 ];
