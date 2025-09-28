@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { teacherData, curriculumRoadmap } from "@/lib/data";
-import { BarChart2, BookCopy, CalendarClock, Bell, Camera, UserCheck, PlusCircle, Send, Users, ShieldCheck, Check, X } from "lucide-react";
+import { BarChart2, BookCopy, CalendarClock, Bell, Camera, UserCheck, PlusCircle, Send, Users, ShieldCheck, Check, X, Milestone, ArrowRight } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function TeacherDashboard() {
   const statusColors = {
@@ -88,15 +89,18 @@ export default function TeacherDashboard() {
         </Card>
 
         <Card>
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-base font-medium">Curriculum Roadmap</CardTitle>
+            <Link href="/roadmap" className="text-sm text-primary flex items-center">
+              View All <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </CardHeader>
           <CardContent>
             <div className="flex space-x-2">
-              {curriculumRoadmap.map((item, index) => (
+              {curriculumRoadmap.slice(0, 5).map((item, index) => (
                 <div key={index} className="flex-1 text-center">
                   <div className={cn("w-full h-2 rounded-full", statusColors[item.status as keyof typeof statusColors])}></div>
-                  <p className="text-xs mt-1">{item.unit}</p>
+                  <p className="text-xs mt-1">{item.title}</p>
                 </div>
               ))}
             </div>

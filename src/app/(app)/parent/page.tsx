@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { parentData, curriculumRoadmap } from "@/lib/data";
-import { User, CheckCircle, List, Send, Calendar, BarChartHorizontal, Milestone } from "lucide-react";
+import { User, CheckCircle, List, Send, Calendar, BarChartHorizontal, Milestone, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Table,
@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import Link from "next/link";
 
 export default function ParentDashboard() {
   const statusColors = {
@@ -81,19 +82,22 @@ export default function ParentDashboard() {
         </Card>
 
         <Card>
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-base font-medium">Academic Progress</CardTitle>
+            <Link href="/roadmap" className="text-sm text-primary flex items-center">
+              View Roadmap <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </CardHeader>
           <CardContent>
              <div className="relative pl-6">
                 <div className="absolute left-0 top-0 h-full w-0.5 bg-border -translate-x-1/2 ml-3"></div>
-                {curriculumRoadmap.map((item, index) => (
+                {curriculumRoadmap.slice(0,3).map((item, index) => (
                     <div key={index} className="relative mb-6">
                         <div className={cn(
                             "absolute -left-0.5 top-1 h-3 w-3 rounded-full -translate-x-1/2 ml-0.5",
                              item.status === 'completed' ? 'bg-accent' : 'bg-secondary'
                         )}></div>
-                        <p className="font-semibold text-sm">{item.unit}</p>
+                        <p className="font-semibold text-sm">{item.title}</p>
                         <Badge variant={item.status === 'completed' ? 'default' : 'secondary'} className={cn(item.status === 'in-progress' && 'bg-blue-200 text-blue-800')}>{item.status}</Badge>
                     </div>
                 ))}

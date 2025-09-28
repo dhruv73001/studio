@@ -54,9 +54,9 @@ export const parentData = {
 };
 
 export const curriculumRoadmap = [
-    { unit: 'Unit 1: Algebra', status: 'completed' },
-    { unit: 'Unit 2: Geometry', status: 'completed' },
-    { unit: 'Unit 3: Trigonometry', status: 'in-progress' },
-    { unit: 'Unit 4: Calculus', status: 'upcoming' },
-    { unit: 'Unit 5: Statistics', status: 'upcoming' },
+    { title: 'Unit 1: Algebra', description: 'Foundations of algebraic expressions and equations.', status: 'completed', orderIndex: 1 },
+    { title: 'Unit 2: Geometry', description: 'Exploring shapes, spaces, and their properties.', status: 'completed', orderIndex: 2 },
+    { title: 'Unit 3: Trigonometry', description: 'Understanding triangles and periodic functions.', status: 'in-progress', orderIndex: 3 },
+    { title: 'Unit 4: Calculus', description: 'Introduction to limits, derivatives, and integrals.', status: 'not-started', orderIndex: 4 },
+    { title: 'Unit 5: Statistics', description: 'The practice of collecting and analyzing numerical data.', status: 'not-started', orderIndex: 5 },
 ];
