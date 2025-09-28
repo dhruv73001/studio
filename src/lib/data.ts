@@ -1,3 +1,4 @@
+
 export const teacherData = {
   name: "Dr. Evelyn Reed",
   attendance: 85,
@@ -98,3 +99,13 @@ export const calendarData = {
     { time: '01:00 PM', subject: 'Computer Science' },
   ]
 };
+
+export const leaderboardData = [
+    { rank: 1, name: 'Alice Smith', points: 1250, avatar: 'https://picsum.photos/seed/alice/40', badges: ['Top Scorer', 'Perfect Attendance'] },
+    { rank: 2, name: 'Bob Johnson', points: 1180, avatar: 'https://picsum.photos/seed/bob/40', badges: ['Top Scorer'] },
+    { rank: 3, name: 'Charlie Brown', points: 1120, avatar: 'https://picsum.photos/seed/charlie/40', badges: ['Perfect Attendance'] },
+    { rank: 4, name: 'Alex Johnson', points: 1050, avatar: 'https://picsum.photos/seed/alex/40', badges: [] },
+    { rank: 5, name: 'Diana Prince', points: 980, avatar: 'https://picsum.photos/seed/diana/40', badges: ['Top Scorer'] },
+    { rank: 6, name: 'Ethan Hunt', points: 950, avatar: 'https://picsum.photos/seed/ethan/40', badges: [] },
+    { rank: 7, name: 'Frank Castle', points: 920, avatar: 'https://picsum.photos/seed/frank/40', badges: ['Perfect Attendance'] },
+];

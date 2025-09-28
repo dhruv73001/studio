@@ -1,3 +1,4 @@
+
 import { Header } from "@/components/common/Header";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -58,12 +59,14 @@ export default function StudentDashboard() {
             </Card>
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Leaderboard</CardTitle>
+                    <CardTitle className="text-sm font-medium">Leaderboard Rank</CardTitle>
                     <Star className="h-4 w-4 text-yellow-500" />
                 </CardHeader>
                 <CardContent>
                     <div className="text-2xl font-bold">#{studentData.leaderboardRank}</div>
-                    <p className="text-xs text-muted-foreground">in your class</p>
+                    <Link href="/leaderboard" className="text-xs text-primary hover:underline flex items-center">
+                        View Full Board <ArrowRight className="ml-1 h-3 w-3" />
+                    </Link>
                 </CardContent>
             </Card>
         </div>
