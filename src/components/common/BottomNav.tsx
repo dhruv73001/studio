@@ -10,11 +10,12 @@ import React from 'react';
 export function BottomNav() {
   const pathname = usePathname();
   
+  // This is a placeholder. In a real app, you'd get the user's role dynamically.
   const role = 'student'; 
   const homePath = `/${role}`;
 
   const navItems = [
-    { href: homePath, icon: Home, label: 'Home' },
+    { href: '/student', icon: Home, label: 'Home' },
     { href: '/tasks', icon: ClipboardList, label: 'Tasks' },
     { href: '/group-study', icon: Users, label: 'Study' },
     { href: '/ai', icon: GraduationCap, label: 'GPT' },
