@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BookOpen, Users, GraduationCap, User, Wand2 } from 'lucide-react';
+import { Home, Users, GraduationCap, User, Wand2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
@@ -12,7 +12,7 @@ export function BottomNav() {
   
   const navItems = [
     { href: '/student', icon: Home, label: 'Home' },
-    { href: '/roadmaps', icon: BookOpen, label: 'Roadmaps' },
+    { href: '/group-study', icon: Users, label: 'Study' },
     { href: '/ai-roadmap', icon: Wand2, label: 'AI Plan' },
     { href: '/ai', icon: GraduationCap, label: 'GPT' },
     { href: '/profile', icon: User, label: 'Profile' },
