@@ -4,12 +4,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, ClipboardList, Calendar, User, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import React from 'react';
 
 export function BottomNav() {
   const pathname = usePathname();
   
-  // Statically set the role for the home path.
-  // This could be replaced with actual role management later.
   const role = 'student'; 
   const homePath = `/${role}`;
 
@@ -22,26 +21,33 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur-sm max-w-md mx-auto">
-      <div className="flex h-16 items-center justify-around">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href;
-          
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'flex flex-col items-center justify-center space-y-1 w-16 text-muted-foreground transition-colors hover:text-primary',
-                isActive && 'text-primary'
-              )}
-            >
-              <item.icon className="h-6 w-6" />
-              <span className="text-xs font-medium">{item.label}</span>
-            </Link>
-          );
-        })}
-      </div>
-    </nav>
+    <div className="fixed bottom-4 left-0 right-0 z-50 flex justify-center">
+      <nav className="max-w-md w-11/12 mx-auto">
+        <div className="flex h-16 items-center justify-around bg-background/80 backdrop-blur-sm rounded-full border shadow-lg">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'flex items-center justify-center gap-x-2 p-3 rounded-full text-muted-foreground transition-all duration-300 ease-in-out hover:text-primary',
+                  isActive ? 'bg-primary/10 text-primary' : 'hover:bg-muted/50'
+                )}
+              >
+                <item.icon className="h-6 w-6 shrink-0" />
+                <span className={cn(
+                  "text-sm font-medium transition-all duration-300 ease-in-out",
+                  isActive ? 'max-w-xs' : 'max-w-0 overflow-hidden'
+                )}>
+                  {isActive && item.label}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
+    </div>
   );
 }
