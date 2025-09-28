@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ClipboardList, Calendar, User, GraduationCap, Users } from 'lucide-react';
+import { Home, ClipboardList, BookOpen, User, GraduationCap, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
@@ -16,7 +16,7 @@ export function BottomNav() {
 
   const navItems = [
     { href: '/student', icon: Home, label: 'Home' },
-    { href: '/tasks', icon: ClipboardList, label: 'Tasks' },
+    { href: '/roadmaps', icon: BookOpen, label: 'Roadmaps' },
     { href: '/group-study', icon: Users, label: 'Study' },
     { href: '/ai', icon: GraduationCap, label: 'GPT' },
     { href: '/profile', icon: User, label: 'Profile' },
@@ -27,7 +27,7 @@ export function BottomNav() {
       <nav className="max-w-md w-11/12 mx-auto">
         <div className="flex h-16 items-center justify-around bg-background/80 backdrop-blur-sm rounded-full border shadow-lg">
           {navItems.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = pathname.startsWith(item.href);
             
             return (
               <Link

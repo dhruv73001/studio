@@ -134,7 +134,7 @@ export default function ParentDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-base font-medium">Academic Progress</CardTitle>
-            <Link href="/roadmap" className="text-sm text-primary flex items-center">
+            <Link href="/roadmaps" className="text-sm text-primary flex items-center">
               View Roadmap <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </CardHeader>

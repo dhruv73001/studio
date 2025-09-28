@@ -144,7 +144,7 @@ export default function TeacherDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-base font-medium">Curriculum Roadmap</CardTitle>
-            <Link href="/roadmap" className="text-sm text-primary flex items-center">
+            <Link href="/roadmaps" className="text-sm text-primary flex items-center">
               View All <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </CardHeader>

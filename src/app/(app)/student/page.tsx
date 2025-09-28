@@ -84,7 +84,7 @@ export default function StudentDashboard() {
               Follow your personalized learning path and track your progress.
             </p>
             <Button asChild className="w-full">
-              <Link href="/roadmap">
+              <Link href="/roadmaps">
                 View Your Path <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
