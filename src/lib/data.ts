@@ -96,6 +96,22 @@ export type CalendarEvent = {
 export const calendarData: { events: CalendarEvent[] } = {
   events: [
     {
+      title: 'School Holiday – Dussehra',
+      description: 'Holiday for Dussehra festival.',
+      startDate: '2025-10-02',
+      endDate: '2025-10-02',
+      time: 'All Day',
+      type: 'Holiday',
+    },
+    {
+      title: 'School Holiday – Diwali',
+      description: 'Holiday for Diwali, the festival of lights.',
+      startDate: '2025-10-21',
+      endDate: '2025-10-21',
+      time: 'All Day',
+      type: 'Holiday',
+    },
+    {
       title: 'Math Quiz',
       description: 'Chapter 5 Quiz',
       startDate: '2025-10-30',
@@ -120,10 +136,18 @@ export const calendarData: { events: CalendarEvent[] } = {
       type: 'Event',
     },
     {
-      title: 'School Holiday – Diwali',
-      description: 'Holiday',
-      startDate: '2025-11-12',
-      endDate: '2025-11-12',
+      title: 'History Mid-term Exam',
+      description: 'Exam covering Units 1-3.',
+      startDate: '2025-11-15',
+      endDate: '2025-11-15',
+      time: '09:00 AM',
+      type: 'Quiz',
+    },
+    {
+      title: 'School Holiday – Christmas',
+      description: 'Holiday for Christmas.',
+      startDate: '2025-12-25',
+      endDate: '2025-12-25',
       time: 'All Day',
       type: 'Holiday',
     },
