@@ -19,7 +19,7 @@ export default function LoginPage() {
         <Button asChild size="lg" variant="secondary" className="py-6 text-lg rounded-full">
           <Link href="/teacher">I am a Teacher</Link>
         </Button>
-        <Button asChild size="lg" variant="outline" className="py-6 text-lg rounded-full">
+        <Button asChild size="lg" variant="secondary" className="py-6 text-lg rounded-full">
           <Link href="/parent">I am a Parent</Link>
         </Button>
       </div>
